@@ -95,7 +95,7 @@ def manage_members():
 def login():
     return discord.create_session(scope=["identify", 
                                          "guilds",
-                                         "guilds.members.read"])  # Add additional scopes as needed
+                                         "guilds.members.read"])
 
 
 @app.route("/callback")
