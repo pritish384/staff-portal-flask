@@ -1,0 +1,27 @@
+{
+    "servername": "localhost", 
+    "username": "root",
+    "password": "",
+    "database": "staff",
+
+
+    "auth_url": "https://discord.com/api/oauth2/authorize?client_id=1107163961297752166&redirect_uri=http%3A%2F%2Flocalhost%2Fstaff-portal%2Foauth%2Fsrc%2Fprocess-oauth.php&response_type=code&scope=guilds%20identify%20guilds.members.read",
+
+
+    "bot_token": "MTEwNzE2Mzk2MTI5Nzc1MjE2Ng.GNTRTF.1u18V21RyVALa1i0SK9mzjNz-Xa7ZKiBGxXzdU",
+    
+    "SECRET_KEY": "e7ca9bff2ce3694d914bcdcbef4f1afa",
+    "client_id": "1107163961297752166",
+    "client_secret": "0Q_mWfuGjnPuRoib5m6EjfhddlUDuJ2_",
+    "grant_type": "authorization_code",
+    "callback_url": "http://localhost:5000/callback",
+    "scope": "identify%20guilds%20guilds.members.read",
+
+    "guild_id": "1106997095447146576",
+    "bots_staff_roles": ["DEV" , "ADMIN"]
+
+
+
+
+
+}
