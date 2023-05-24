@@ -48,7 +48,7 @@ def manage_members():
     if discord.authorized:
         user = discord.fetch_user()
 
-        if db.members.find_one({"discord_id":user.id}) is None:  
+        if db.members.find_one({"discord_id":user.id}) is None:
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
 
