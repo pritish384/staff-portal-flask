@@ -89,7 +89,6 @@ def manage_members_post():
     return redirect(url_for("login"))
 
 
-
 @app.route("/login")
 def login():
     return discord.create_session(scope=["identify", "guilds", "guilds.members.read"])
