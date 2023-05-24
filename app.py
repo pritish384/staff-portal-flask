@@ -99,9 +99,9 @@ def callback():
 @app.route("/error")
 # get error message from session if there is one
 def error():
-    error = session.get("error", None)
-    if not error:
-        error = "An error occured"
+    ERROR = session.get("error", None)
+    if not ERROR:
+        ERROR = "An error occured"
 
     return render_template('templates/error.html' , error=error)
 
@@ -109,8 +109,8 @@ def error():
 @app.route("/logout")
 def logout():
     discord.revoke()
-    error = "You have been logged out"
-    session["error"] = error
+    ERROR = "You have been logged out"
+    session["error"] = ERROR
     return redirect(url_for("error"))
 
 
