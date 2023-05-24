@@ -33,7 +33,7 @@ def staff_dashboard():
     if discord.authorized:
         user = discord.fetch_user()
 
-        if db.members.find_one({"discord_id":user.id}) is None: 
+        if db.members.find_one({"discord_id":user.id}) is None :
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
 
@@ -42,16 +42,17 @@ def staff_dashboard():
         return render_template('templates/staff.html', user=user , staff_info=db.members.find_one({"discord_id":user.id}) , bot_access=bot_access)
     return redirect(url_for("login"))
 
+
 @app.route('/staff/manage-members' , methods=["GET" , "POST"])
 def manage_members():
     if discord.authorized:
         user = discord.fetch_user()
 
-        if db.members.find_one({"discord_id":user.id}) is None:
+        if db.members.find_one({"discord_id":user.id}) is None :
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
 
-        if db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']:
+        if db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles'] :
             bot_access = True
         else:
             bot_access = False
@@ -85,10 +86,12 @@ def manage_members():
 def login():
     return discord.create_session(scope=["identify" , "guilds" , "guilds.members.read"])  # Add additional scopes as needed
 
+
 @app.route("/callback")
 def callback():
     discord.callback()
     return redirect(url_for("staff_dashboard"))
+
 
 @app.route("/error")
 def error():
