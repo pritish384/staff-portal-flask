@@ -43,8 +43,6 @@ def staff_dashboard():
     return redirect(url_for("login"))
 
 @app.route('/staff/manage-members' , methods=["GET" , "POST"])
-
-
 def manage_members():
     if discord.authorized:
         user = discord.fetch_user()
