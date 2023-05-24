@@ -39,10 +39,7 @@ def staff_dashboard():
 
         bot_access = db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']
 
-        return render_template('templates/staff.html', 
-                                user=user,
-                                staff_info=db.members.find_one({"discord_id":user.id}),
-                                bot_access=bot_access)
+        return render_template('templates/staff.html', user=user,staff_info=db.members.find_one({"discord_id":user.id}),bot_access=bot_access)
     
     return redirect(url_for("login"))
 
@@ -82,20 +79,14 @@ def manage_members():
             print(request.form)
             return redirect(url_for("staff_dashboard"))
 
-        return render_template('templates/manage_members.html', 
-                               user=user, 
-                               staff_info=db.members.find_one({"discord_id":user.id}),
-                               bot_access=bot_access, 
-                               staff_members=staff_members)
+        return render_template('templates/manage_members.html', user=user, staff_info=db.members.find_one({"discord_id":user.id}),bot_access=bot_access, staff_members=staff_members)
     
     return redirect(url_for("login"))
 
 
 @app.route("/login")
 def login():
-    return discord.create_session(scope=["identify", 
-                                         "guilds",
-                                         "guilds.members.read"])
+    return discord.create_session(scope=["identify", "guilds", "guilds.members.read"])
 
 
 @app.route("/callback")
