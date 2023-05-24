@@ -37,7 +37,7 @@ def staff_dashboard():
         if db.members.find_one({"discord_id":user.id}) == None:
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
-        
+
         bot_access = db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']
 
         return render_template('templates/staff.html', user=user , staff_info=db.members.find_one({"discord_id":user.id}) , bot_access=bot_access) 
@@ -59,12 +59,12 @@ def manage_members():
             bot_access = False
             session["error"] = "You do not have access to this page"
             return redirect(url_for("/error"))
-        
+
         staff_members = db.members.find()
 
         # if there is post['modify']
         if request.method == "POST":
-            
+
             # if request.form['modify']:
             #     document={
             #         "staff_code":request.form['staff_code'],
@@ -78,7 +78,7 @@ def manage_members():
             #     db.members.delete_one({"staff_code":request.form['staff_code']})
             print(request.form)
             return redirect(url_for("staff_dashboard"))
-            
+
 
 
         return render_template('templates/manage_members.html', user=user , staff_info=db.members.find_one({"discord_id":user.id}) , bot_access=bot_access , staff_members=staff_members)
