@@ -50,6 +50,7 @@ def manage_members():
         user = discord.fetch_user()
 
         if db.members.find_one({"discord_id":user.id}) is None:
+            print(db.members.find_one({"discord_id":user.id}))
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
 
@@ -83,7 +84,13 @@ def manage_members_post():
             return redirect(url_for("/error"))
 
         staff_members = db.members.find()
-        print(request.form)
+        staff_code = request.form.get("staff_code")
+        member_salary = request.form.get("member_salary")
+        member_department = request.form.get("member_department")
+        discord_id = int(request.form.get("discord_id"))
+
+        db.members.update_one({"staff_code":staff_code}, {"$set":{"discord_id":discord_id, "salary":member_salary, "department":member_department}})
+
         return render_template('templates/manage_members.html', user=user, staff_info=db.members.find_one({"discord_id":user.id}),bot_access=bot_access, staff_members=staff_members)
 
     return redirect(url_for("login"))
@@ -106,7 +113,7 @@ def error():
     if not ERROR:
         ERROR = "An error occured"
 
-    return render_template('templates/error.html' , error=error)
+    return render_template('templates/error.html' , error=ERROR)
 
 
 @app.route("/logout")
