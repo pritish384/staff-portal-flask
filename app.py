@@ -44,7 +44,7 @@ def staff_dashboard():
     return redirect(url_for("login"))
 
 
-@app.route('/staff/manage-members' , methods=["GET" , "POST"])
+@app.route('/staff/manage-members' , methods=["GET"])
 def manage_members():
     if discord.authorized:
         user = discord.fetch_user()
@@ -61,27 +61,33 @@ def manage_members():
             return redirect(url_for("/error"))
 
         staff_members = db.members.find()
-
-        # if there is post['modify']
-        if request.method == "POST":
-
-            # if request.form['modify']:
-            #     document={
-            #         "staff_code":request.form['staff_code'],
-            #         "discord_id":request.form['discord_id'],
-            #         "department":request.form['member_department'],
-            #         "salary":request.form['member_salary']
-            #     }
-            #     db.members.update_one({"staff_code":request.form['staff_code']} , {"$set":document})
-
-            # elif request.form['remove']:
-            #     db.members.delete_one({"staff_code":request.form['staff_code']})
-            print(request.form)
-            return redirect(url_for("staff_dashboard"))
-
         return render_template('templates/manage_members.html', user=user, staff_info=db.members.find_one({"discord_id":user.id}),bot_access=bot_access, staff_members=staff_members)
     
     return redirect(url_for("login"))
+
+
+@app.route('/staff/manage-members' , methods=["POST"])
+def manage_members_post():
+    if discord.authorized:
+        user = discord.fetch_user()
+
+        if db.members.find_one({"discord_id":user.id}) is None:
+            session["error"] = "You are not a staff member"
+            return redirect(url_for("error"))
+        
+        if db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']:
+            bot_access = True
+        else:
+            bot_access = False
+            session["error"] = "You do not have access to this page"
+            return redirect(url_for("/error"))
+        
+        staff_members = db.members.find()
+        print(request.form)
+        return render_template('templates/manage_members.html', user=user, staff_info=db.members.find_one({"discord_id":user.id}),bot_access=bot_access, staff_members=staff_members)
+    
+    return redirect(url_for("login"))
+
 
 
 @app.route("/login")
