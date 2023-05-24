@@ -52,7 +52,7 @@ def manage_members():
         if db.members.find_one({"discord_id":user.id}) is None:
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
-        
+
         if db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']:
             bot_access = True
         else:
