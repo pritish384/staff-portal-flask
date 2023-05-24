@@ -44,6 +44,8 @@ def staff_dashboard():
     return redirect(url_for("login"))
 
 @app.route('/staff/manage-members' , methods=["GET" , "POST"])
+
+
 def manage_members():
     if discord.authorized:
         user = discord.fetch_user()
@@ -97,7 +99,8 @@ def callback():
     return redirect(url_for("staff_dashboard"))
 
 @app.route("/error")
-# get error message from session if there is one
+
+
 def error():
     ERROR = session.get("error", None)
     if not ERROR:
