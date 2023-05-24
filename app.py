@@ -38,10 +38,7 @@ def staff_dashboard():
             session["error"] = "You are not a staff member"
             return redirect(url_for("error"))
         
-        if db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']:
-            bot_access = True
-        else:
-            bot_access = False
+        bot_access = db.members.find_one({"discord_id":user.id})["department"] in config['bots_staff_roles']
 
         return render_template('templates/staff.html', user=user , staff_info=db.members.find_one({"discord_id":user.id}) , bot_access=bot_access) 
     return redirect(url_for("login"))
