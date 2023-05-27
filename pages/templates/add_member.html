@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AFI Staff Portal</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/baca67d137.js" crossorigin="anonymous"></script>
+    <!-- overlayScrollbars -->
+  
+    <link rel="stylesheet" href="{{ url_for('static', filename='plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/adminlte.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='dist/img/server.png') }}">
+  
+</head>
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+
+  <!-- <div class="preloader flex-column justify-content-center align-items-center">
+    <img src="{{ url_for('static', filename='dist/img/server.png') }}" alt="Logo" height="60" width="60">
+    <p>ARCADE FUNHOUSE INDIA</p>
+  </div> -->
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-dark">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+      </ul>
+  
+
+    </nav>
+
+
+    {% include 'elements/sidebar.html' %}
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">AFI Admin - Add Member</h1>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+      <p>Bot Status: <span class="badge badge-success">Online</span></p>
+      <hr>
+      <form action="" method="post">
+        <label>Staff Code</label>
+        <input type="text" autocomplete="off" required name="staff_code" class="form-control" placeholder="Enter Staff Code">
+        <br>
+        <label>Salary</label>
+        <input type="text" autocomplete="off" required name="member_salary" class="form-control" placeholder="Enter Salary">
+        <br>
+        <label>Department</label>
+        <input type="text" autocomplete="off" required name="member_department" class="form-control" placeholder="Enter Department">
+        <br>
+        <label>Discord ID</label>
+        <input type="text" autocomplete="off" required name="discord_id" class="form-control" placeholder="Enter Discord ID">
+        <hr>
+        <button type="submit" name="add" id="add" class="btn btn-info"><i class="fa fa-plus"></i> Add Member</button>
+        </form>
+    
+  </div>
+
+ 
+
+            <!-- /.col -->
+     
+      
+    </div>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="{{ url_for('static', filename='plugins/jquery/jquery.min.js') }}"></script>
+<!-- Bootstrap -->
+<script src="{{ url_for('static', filename='plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<!-- overlayScrollbars -->
+<script src="{{ url_for('static', filename='plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
+<!-- AdminLTE App -->
+<script src="{{ url_for('static', filename='dist/js/adminlte.js') }}"></script>
+
+
+
+
+<!-- PAGE plugins -->
+<!-- jQuery Mapael -->
+<script src="{{ url_for('static', filename='plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/raphael/raphael.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
+<script src="{{ url_for('static', filename='plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
+
+
+
+<!-- ChartJS -->
+<script src="{{ url_for('static', filename='plugins/chart.js/Chart.min.js') }}"></script>
+
+
+
+<!-- AdminLTE for demo purposes -->
+
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="{{ url_for('static', filename='dist/js/pages/dashboard.js') }}"></script>
+</body>
+</html>

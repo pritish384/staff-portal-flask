@@ -46,7 +46,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">AFI Admin - Manage Members</h1>
+            <h1 class="m-0">AFI Admin - Manage Member</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -93,10 +93,13 @@
                           <td>{{ staff_member.staff_code }}</td>
                           <td>{{ staff_member.department }}</td>
                           <td>{{ staff_member.salary }}</td>
-                          <td><a href="javascript:void(0)" onclick="showForm('{{ staff_member.staff_code }}')" class="btn btn-sm btn-danger"><i class="fa fa-edit"></i> Change</a></td>
+                          <td>
+                            <a href="javascript:void(0)" onclick="showForm('{{ staff_member.staff_code }}' , '{{ staff_member.salary }}' , '{{ staff_member.department }}' , '{{ staff_member.discord_id }}')" class="btn btn-sm btn-danger"><i class="fa fa-edit"></i> Change</a>
+                          </td>
                         </tr>
+                        {% endfor %}
                         <script>
-                            function showForm(staffCode) {
+                            function showForm(staffCode , staffSalary , staffDepartment , staffDiscordID) {
                                 var formHTML = `
                             <form action="" method="post">
                             <!-- dropdown input -->
@@ -104,21 +107,19 @@
                             <input type="hidden" name="staff_code" value="${staffCode}">
                             <br>
                             <label>Salary</label>
-                            <input type="text" name="member_salary" class="form-control" placeholder="Enter Salary">
+                            <input type="text" name="member_salary" value="${staffSalary}" class="form-control" placeholder="Enter Salary">
                             <br>
                             <label>Department</label>
-                            <input type="text" name="member_department" class="form-control" placeholder="Enter Department">
+                            <input type="text" name="member_department" value="${staffDepartment}" class="form-control" placeholder="Enter Department">
                             <br>
                             <label>Discord ID</label>
-                            <input type="text" name="discord_id" class="form-control" placeholder="Enter Discord ID">
+                            <input type="text" name="discord_id" value="${staffDiscordID}" class="form-control" placeholder="Enter Discord ID">
                             <br>
-                            <p class="text-muted">Leave Empty if you are removing.</p>
+                            <p class="text-muted">Set Discord ID to "0" if you want to remove member.</p>
 
                             <button type="submit" name="modify" id="modify" class="btn btn-info"><i class="fa fa-plus"></i> Modify Member</button>
-                            <button type="submit" name="remove" id="remove" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove Member</button>
-                            <button href="javascript:void(0)" onclick="closeForm()" class="btn btn-default"><i class="fa fa-times"></i> Cancel</button>
+                            <a href="javascript:void(0)" onclick="closeForm()" class="btn btn-default"><i class="fa fa-times"></i> Cancel</a>
                             </form>
-                            {% endfor %}
                                 `;
                             
                                 // Update the form-container with the form HTML
